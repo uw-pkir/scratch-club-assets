@@ -73,10 +73,15 @@ editor — that's a normal editing step, not something this repo needs to know a
 
 The editor loads this library through a public CDN (jsDelivr) rather than talking to GitHub
 directly, mainly so a whole classroom hitting it at once never runs into a rate limit. The
-tradeoff is that the CDN caches files for a while — usually **up to about 12 hours** — so a
-brand-new upload might not show up immediately.
+tradeoff is caching: individual file contents are cached for a while (up to about 12 hours), and
+separately, the *list* of what files exist refreshes on its own schedule that isn't always fast —
+in testing, a brand-new file sometimes took longer than a few minutes to appear even right after
+publishing. Plan on changes ahead of when a class needs them rather than expecting them to show up
+instantly.
 
-To make a change appear right away, "purge" it from the cache:
+If you need a change sooner, "purge" the individual file(s) from the cache (this reliably speeds
+up an already-known file's content, though it doesn't always speed up the file *list* the same
+way):
 1. Go to [purge.jsdelivr.net](https://www.jsdelivr.net/tools/purge)
 2. Paste in the CDN URL for the file(s) you changed, in this form:
    ```
