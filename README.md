@@ -39,9 +39,34 @@ A few notes on images:
   detailed drawings.
 - Each sprite/costume gets centered automatically based on the image's own size — no extra setup.
 
-Each `sprites` file becomes a sprite with just one costume and no sounds — enough to drop
-straight into a project. If you want a sprite with multiple costumes (for animation) or a sound
-built in, add it as a plain sprite first and then add extra costumes/sounds to it from inside the
+A file placed directly in `sprites` becomes a sprite with just one costume — enough to drop
+straight into a project.
+
+### Sprites with multiple costumes (walk cycles, animations, blinking, etc.)
+
+Put a **folder** inside `sprites` instead of a single file, and add each costume image into that
+folder. The folder name becomes the sprite's name, and every image inside it becomes one costume
+of that sprite, in alphabetical order — the same shape as how Scratch Cat ships with two costumes
+for its walk cycle.
+
+For example:
+```
+sprites/
+  Blinking Bot/
+    1-eyes-open.png
+    2-eyes-closed.png
+```
+creates one sprite named **"Blinking Bot"** with two costumes, ordered exactly as the file names
+sort — number them (`1-`, `2-`, `3-`...) if the order matters, since plain names sort
+alphabetically rather than by upload order.
+
+To add a folder through GitHub's web UI: on the **Upload files** page, drag the whole folder in
+(not just the files) — GitHub keeps the folder structure. If drag-and-drop only accepts files for
+you, click "choose your files" and select all the files at once, then before committing, click
+each file's path field at the top of the upload list and prepend the folder name, e.g. type
+`Blinking Bot/1-eyes-open.png` — either way works.
+
+Sounds aren't included in a sprite built this way. Add sounds to it afterward from inside the
 editor — that's a normal editing step, not something this repo needs to know about.
 
 ## How fast changes show up
@@ -74,7 +99,8 @@ up right away instead of waiting out the cache.
 ## Troubleshooting
 
 - **My new sprite/costume doesn't show up in the editor.** Give it a minute, then try the purge
-  steps above. If it still doesn't show, double check the file is directly inside one of the four
-  folders (not in a sub-folder) and has one of the supported file types.
+  steps above. If it still doesn't show, double check the file has one of the supported file
+  types, and that it's directly inside `costumes`, `backdrops`, or `sounds` (those three don't
+  support sub-folders — only `sprites` does, for multi-costume sprites, see above).
 - **The image looks fine in the picker thumbnail but doesn't load when I actually use it.** This
   usually means the file type isn't one of the supported ones listed above — check the extension.
